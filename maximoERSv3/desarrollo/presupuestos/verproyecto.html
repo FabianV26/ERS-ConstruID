@@ -1,0 +1,145 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <title>DataTables Editor - Factura</title> 
+
+</head>
+
+<body class="dataTables">
+
+<table cellpadding="3" cellspacing="0" border="0" style="width: 67%; margin: 0 auto 2em auto;">
+    <thead>
+        <tr>
+            <th>Target</th>
+            <th>Search text</th>
+            <th>Treat as regex</th>
+            <th>Use smart search</th>
+        </tr>
+    </thead>
+    <tbody>
+        
+        <tr id="filter_col1" data-column="0">
+            <td>Column - Name</td>
+            <td align="center"><input type="text" class="column_filter" id="col0_filter"></td>
+            
+        </tr>
+       
+    </tbody>
+</table>
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Tiger Nixon</td>
+            <td>System Architect</td>
+            <td>Edinburgh</td>
+            <td>61</td>
+            <td>2011/04/25</td>
+            <td>$320,800</td>
+        </tr>
+        <tr>
+            <td>Garrett Winters</td>
+            <td>Accountant</td>
+            <td>Tokyo</td>
+            <td>63</td>
+            <td>2011/07/25</td>
+            <td>$170,750</td>
+        </tr>
+        <tr>
+            <td>Ashton Cox</td>
+            <td>Junior Technical Author</td>
+            <td>San Francisco</td>
+            <td>66</td>
+            <td>2009/01/12</td>
+            <td>$86,000</td>
+        </tr>
+        <tr>
+            <td>Cedric Kelly</td>
+            <td>Senior Javascript Developer</td>
+            <td>Edinburgh</td>
+            <td>22</td>
+            <td>2012/03/29</td>
+            <td>$433,060</td>
+        </tr>
+        <tr>
+            <td>Airi Satou</td>
+            <td>Accountant</td>
+            <td>Tokyo</td>
+            <td>33</td>
+            <td>2008/11/28</td>
+            <td>$162,700</td>
+        </tr>
+        <tr>
+            <td>Brielle Williamson</td>
+            <td>Integration Specialist</td>
+            <td>New York</td>
+            <td>61</td>
+            <td>2012/12/02</td>
+            <td>$372,000</td>
+        </tr>
+  
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Office</th>
+            <th>Age</th>
+            <th>Start date</th>
+            <th>Salary</th>
+        </tr>
+    </tfoot>
+</table>
+
+</body>
+
+<style>
+
+</style>
+<script src="slice.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+
+<script>
+    function filterGlobal() {
+        $('#example').DataTable().search(
+            $('#global_filter').val(),
+            
+        ).draw();
+    }
+
+    function filterColumn(i) {
+        $('#example').DataTable().column(i).search(
+            $('#col' + i + '_filter').val(),
+          
+        ).draw();
+    }
+
+    $(document).ready(function () {
+        $('#example').DataTable();
+
+        $('input.global_filter').on('keyup click', function () {
+            filterGlobal();
+        });
+
+        $('input.column_filter').on('keyup click', function () {
+            filterColumn($(this).parents('tr').attr('data-column'));
+        });
+    });
+
+</script>
+
+</html>
